@@ -8,11 +8,13 @@ The goal is to gain hands-on experience with:
 
 - Document loading and text extraction
 - Text chunking strategies
+- Keyword search with BM25
 - Embedding generation
 - Vector database storage
 - Semantic vector search
-- Document retrieval
-- Prompt construction
+- Hybrid search combining keyword and semantic retrieval
+- Document retrieval and ranking
+- Prompt construction 
 - LLM based answer generation
 
 As a practical use case, the project uses publicly available Hilti product documentation to build a small product knowledge base. The system will retrieve relevant information from these documents and answer product related questions using a locally hosted LLM.
