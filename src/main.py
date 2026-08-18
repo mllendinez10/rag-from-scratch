@@ -11,6 +11,7 @@ This script will:
 from load_documents import load_documents
 from chunk_documents import chunk_documents
 from keyword_search import keyword_search
+from semantic_search import semantic_search
 
 # List with PDFs location
 pdf_paths = ["data/ESR-5019.pdf", "data/ETA-26:0367.pdf"]
@@ -31,7 +32,12 @@ print(f"the length of the list of chunks is {len(chunks)}")
 query = "What is the item number for MT-70 0C ?"
 
 # Search the best matching chunks with keyword search BM25
-results, scores = keyword_search(query, chunks, top_k=5)
+keyword_results, keyword_scores = keyword_search(query, chunks, top_k=5)
 
-print(results)
-print(scores)
+print(keyword_results)
+print(keyword_scores)
+
+# Search the best matching chunks with semantic search
+semantic_result = semantic_search(query, chunks, top_k=5)
+
+print(semantic_result)
