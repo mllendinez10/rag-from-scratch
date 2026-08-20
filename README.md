@@ -7,7 +7,8 @@ It intentionally avoids frameworks such as LangChain and LangGraph at the beginn
 As a practical use case, the project uses publicly available Hilti product documentation to build a small product knowledge base and answer product-related questions using retrieved information.
 
 
-**Project Goal**
+
+## Project Goal
 
 The goal is to gain hands-on experience with the main components of a RAG system:
 
@@ -22,19 +23,25 @@ The goal is to gain hands-on experience with the main components of a RAG system
 - Retrieval evaluation
 
 
-**Technology Stack**
 
-- Programming language: Python
-- PDF extraction: PyPDF
-- Keyword retrieval: BM25
-- Embeddings: Sentence Transformers
-- Vector database: ChromaDB
-- Hybrid ranking: Reciprocal Rank Fusion (RRF)
-- LLM: Qwen3 8B via Ollama
-- UI: Streamlit
+## Technology Stack
 
-**Project Structure**
+| Area | Technology |
+|---|---|
+| Programming language | Python |
+| PDF extraction | PyPDF |
+| Keyword retrieval | BM25 |
+| Embeddings | Sentence Transformers |
+| Vector database | ChromaDB |
+| Hybrid ranking | Reciprocal Rank Fusion (RRF) |
+| LLM | Qwen3 8B via Ollama |
+| UI | Streamlit |
 
+
+
+## Project Structure
+
+```text
 rag-from-scratch/
 │
 ├── data/
@@ -52,3 +59,4 @@ rag-from-scratch/
 ├── app.py
 ├── requirements.txt
 └── README.md
+```
