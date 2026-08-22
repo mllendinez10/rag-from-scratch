@@ -5,11 +5,14 @@ This script will:
 - Provide a list with PDFs source paths
 - Load and extract the document pages using load_documents.py
 - Split the pages into smaller chunks using chunk_documents.py
+- Create embeddings and store them in ChromaDB using index_chunks.py 
+- Search the best matching chunks using hybrid_search.py
 
 """
 
 from load_documents import load_documents
 from chunk_documents import chunk_documents
+from index_chunks import index_chunks
 from keyword_search import keyword_search
 from semantic_search import semantic_search
 from hybrid_search import hybrid_search
@@ -17,19 +20,22 @@ from hybrid_search import hybrid_search
 # List with PDFs location
 pdf_paths = ["data/ESR-5019.pdf", "data/ETA-26:0367.pdf"]
 
-# Call function that returns the list with pages 
+# Load documents
 pages = load_documents(pdf_paths)
 
 #Testing the function load_documents works
 print(f"the length of the list of pages is {len(pages)}")
 
-# Call function that returns the list with chunks
+# Create chunks
 chunks = chunk_documents(pages)
 
 #Testing the function chunk_documents works
 print(f"the length of the list of chunks is {len(chunks)}")
 
-# User query for testing 
+# Create embeddings and store them in ChromaDB
+index_chunks(chunks)
+
+# User query 
 query = "What is the item number for MT-70 0C ?"
 
 # Search the best matching chunks with keyword search BM25

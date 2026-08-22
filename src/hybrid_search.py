@@ -2,7 +2,7 @@
 Hybrid search using Reciprocal Rank Fusion (RRF)
 
 This script will:
-- Receive the results from keyword and semantic search
+- Receive the results from keyword_search.py and semantic_search.py
 - Homogenize the results so that RRF can be applied
 - Apply RRF
 - Return the result from hybrid search
