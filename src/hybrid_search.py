@@ -12,19 +12,23 @@ This script will:
 from keyword_search import keyword_search
 from semantic_search import semantic_search
 
+RRF_K = 60
+KEYWORD_WEIGHT = 1.0
+SEMANTIC_WEIGHT = 1.0
+
 
 def hybrid_search (query, chunks, top_k=5):
 
     # Get result from keyword search
-    keyword_result, keyword_score = keyword_search(query, chunks, top_k)
+    keyword_result, keyword_score = keyword_search(query, chunks, top_k=10)
 
     # Get result from semantic search
-    semantic_result = semantic_search(query, chunks, top_k)
+    semantic_result = semantic_search(query, top_k=10)
 
     """ 
     The results from keyword and semantic search have a different format.
     So they need to be homogenized before using RRF.
-    For RRF all we need is the chunk number or ID and its possition.
+    For RRF all we need is the chunk number or ID and its position.
     """
 
     # ---------------------------------------------------------
@@ -78,7 +82,7 @@ def hybrid_search (query, chunks, top_k=5):
         if chunk_id not in rrf_scores:
              rrf_scores[chunk_id] = 0
 
-        rrf_scores[chunk_id] +=1 / (60 + rank)
+        rrf_scores[chunk_id] += KEYWORD_WEIGHT / (RRF_K + rank)
 
 
     # Process semantic search result
@@ -90,7 +94,7 @@ def hybrid_search (query, chunks, top_k=5):
         if chunk_id not in rrf_scores:
             rrf_scores[chunk_id] = 0
     
-        rrf_scores[chunk_id] +=1 / (60 + rank)
+        rrf_scores[chunk_id] += SEMANTIC_WEIGHT / (RRF_K + rank)
 
 
     # Sort by highest RRF score

@@ -31,7 +31,7 @@ client = chromadb.PersistentClient(path=CHROMA_PATH)
 collection = client.get_or_create_collection(name=COLLECTION_NAME)
 
 
-def semantic_search (query, top_k=5):
+def semantic_search (query, top_k=10):
 
     # Create query embedding
     query_embedding = model.encode(query, convert_to_numpy=True)

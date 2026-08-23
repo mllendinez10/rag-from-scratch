@@ -7,6 +7,7 @@ This script will:
 - Split the pages into smaller chunks using chunk_documents.py
 - Create embeddings and store them in ChromaDB using index_chunks.py 
 - Search the best matching chunks using hybrid_search.py
+- Generate the answer using generate_answer.py
 
 """
 
@@ -16,6 +17,8 @@ from index_chunks import index_chunks
 from keyword_search import keyword_search
 from semantic_search import semantic_search
 from hybrid_search import hybrid_search
+from generate_answer import generate_answer
+
 
 # List with PDFs location
 pdf_paths = ["data/ESR-5019.pdf", "data/ETA-26:0367.pdf"]
@@ -23,29 +26,27 @@ pdf_paths = ["data/ESR-5019.pdf", "data/ETA-26:0367.pdf"]
 # Load documents
 pages = load_documents(pdf_paths)
 
-#Testing the function load_documents works
-print(f"the length of the list of pages is {len(pages)}")
-
 # Create chunks
 chunks = chunk_documents(pages)
-
-#Testing the function chunk_documents works
-print(f"the length of the list of chunks is {len(chunks)}")
 
 # Create embeddings and store them in ChromaDB
 index_chunks(chunks)
 
 # User query 
-query = "What is the item number for MT-70 0C ?"
+query = "What installation torque is required for MT-TL M10 OC?"
 
 # Search the best matching chunks with keyword search BM25
-# keyword_results, keyword_scores = keyword_search(query, chunks, top_k=5)
-# print(f"keyword result is: {keyword_results}")
+#keyword_results, keyword_scores = keyword_search(query, chunks, top_k=20)
+
 
 # Search the best matching chunks with semantic search
-# semantic_result = semantic_search(query, chunks, top_k=5)
-# print(f"semantic result is: {semantic_result}")
+# semantic_result = semantic_search(query, top_k=20)
+
 
 # Search the best matching chunks with hybrid search
 hybrid_result = hybrid_search(query, chunks, top_k=5)
-print(f"hybrid result is: {hybrid_result}")
+
+# Generate the answer with the LLM
+answer = generate_answer(query, hybrid_result)
+print(f"Answer: {answer}")
+

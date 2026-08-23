@@ -15,7 +15,7 @@ This script will:
 
 import bm25s
 
-def keyword_search(query, chunks, top_k=5):
+def keyword_search(query, chunks, top_k=10):
     
     # List with only the text from each chunk
     chunks_text = []
