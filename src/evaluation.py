@@ -51,14 +51,19 @@ print(f"the loaded file contains: {len(golden_set)} questions")
 keyword_hit_1 = 0
 keyword_hit_3 = 0
 keyword_hit_5 = 0
+keyword_hit_10 = 0
+
 
 semantic_hit_1 = 0
 semantic_hit_3 = 0
 semantic_hit_5 = 0
+semantic_hit_10 = 0
+
 
 hybrid_hit_1 = 0
 hybrid_hit_3 = 0
 hybrid_hit_5 = 0
+hybrid_hit_10 = 0
 
 keyword_mrr = 0
 semantic_mrr = 0
@@ -126,6 +131,9 @@ for item in golden_set:
 
     if any(chunk_id in keyword_ids[:5] for chunk_id in relevant_chunk_ids):
         keyword_hit_5 += 1
+        
+    if any(chunk_id in keyword_ids[:10] for chunk_id in relevant_chunk_ids):
+            keyword_hit_10 += 1
 
 
     # Semantic
@@ -137,6 +145,9 @@ for item in golden_set:
 
     if any(chunk_id in semantic_ids[:5] for chunk_id in relevant_chunk_ids):
         semantic_hit_5 += 1
+        
+    if any(chunk_id in semantic_ids[:10] for chunk_id in relevant_chunk_ids):
+            semantic_hit_10 += 1
 
 
     # Hybrid
@@ -148,6 +159,9 @@ for item in golden_set:
 
     if any(chunk_id in hybrid_ids[:5] for chunk_id in relevant_chunk_ids):
         hybrid_hit_5 += 1
+        
+    if any(chunk_id in hybrid_ids[:10] for chunk_id in relevant_chunk_ids):
+        hybrid_hit_10 += 1
         
     
     # -----------------------------------------------------
@@ -184,16 +198,19 @@ print("\nKEYWORD")
 print(f"Hit@1: {keyword_hit_1 / total_questions:.2%}")
 print(f"Hit@3: {keyword_hit_3 / total_questions:.2%}")
 print(f"Hit@5: {keyword_hit_5 / total_questions:.2%}")
+print(f"Hit@10: {keyword_hit_10 / total_questions:.2%}")
 print(f"MRR: {keyword_mrr / total_questions:.3f}")
 
 print("\nSEMANTIC")
 print(f"Hit@1: {semantic_hit_1 / total_questions:.2%}")
 print(f"Hit@3: {semantic_hit_3 / total_questions:.2%}")
 print(f"Hit@5: {semantic_hit_5 / total_questions:.2%}")
+print(f"Hit@10: {semantic_hit_10 / total_questions:.2%}")
 print(f"MRR: {semantic_mrr / total_questions:.3f}")
 
 print("\nHYBRID")
 print(f"Hit@1: {hybrid_hit_1 / total_questions:.2%}")
 print(f"Hit@3: {hybrid_hit_3 / total_questions:.2%}")
 print(f"Hit@5: {hybrid_hit_5 / total_questions:.2%}")
+print(f"Hit@10: {hybrid_hit_10 / total_questions:.2%}")
 print(f"MRR: {hybrid_mrr / total_questions:.3f}")
