@@ -36,11 +36,11 @@ index_chunks(chunks)
 query = "What installation torque is required for MT-TL M10 OC?"
 
 # Search the best matching chunks with keyword search BM25
-#keyword_results, keyword_scores = keyword_search(query, chunks, top_k=20)
+#keyword_results, keyword_scores = keyword_search(query, chunks, top_k=10)
 
 
 # Search the best matching chunks with semantic search
-# semantic_result = semantic_search(query, top_k=20)
+# semantic_result = semantic_search(query, top_k=10)
 
 
 # Search the best matching chunks with hybrid search

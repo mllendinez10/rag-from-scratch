@@ -6,14 +6,12 @@ It intentionally avoids frameworks such as LangChain and LangGraph at the beginn
 
 As a practical use case, the project uses publicly available Hilti product documentation to build a small product knowledge base and answer product-related questions using retrieved information.
 
-
-
 ## Project Goal
 
 The goal is to gain hands-on experience with the main components of a RAG system:
 
 - Document loading and text extraction
-- Text chunking with overlap
+- Fixed-size text chunking with overlap
 - Keyword search using BM25
 - Embedding generation
 - Vector storage using ChromaDB
@@ -21,26 +19,24 @@ The goal is to gain hands-on experience with the main components of a RAG system
 - Hybrid search using Reciprocal Rank Fusion (RRF)
 - Prompt construction
 - LLM answer generation
+- Retrieval evaluation using a golden set
 - UI development with Streamlit
-- Retrieval evaluation
-
-
 
 ## Technology Stack
 
-| Area | Technology |
-|---|---|
-| Programming language | Python |
-| PDF extraction | PyPDF |
-| Keyword retrieval | BM25 |
-| Embeddings | Sentence Transformers |
-| Embedding model | all-MiniLM-L6-v2 |
-| Vector database | ChromaDB |
-| Hybrid ranking | Reciprocal Rank Fusion (RRF) |
-| LLM | Qwen3 8B via Ollama |
-| UI | Streamlit |
-
-
+| Area                 | Technology                     |
+| -------------------- | ------------------------------ |
+| Programming language | Python                         |
+| PDF extraction       | PyPDF                          |
+| Text chunking        | Fixed-size chunks with overlap |
+| Keyword retrieval    | BM25                           |
+| Semantic retrieval   | Sentence Transformers          |
+| Embedding model      | all-MiniLM-L6-v2               |
+| Vector database      | ChromaDB                       |
+| Hybrid ranking       | Reciprocal Rank Fusion (RRF)   |
+| LLM                  | Qwen3 4B via Ollama            |
+| Evaluation           | Hit@K and MRR                  |
+| UI                   | Streamlit                      |
 
 ## Project Structure
 
@@ -49,6 +45,10 @@ rag-from-scratch/
 │
 ├── data/
 │   └── PDF documents
+│
+├── evaluation/
+│   ├── golden_set.json
+│   └── rag_retrieval_evaluation_tracker.xlsx
 │
 ├── chroma_db/
 │   └── Persistent vector database
@@ -69,18 +69,17 @@ rag-from-scratch/
 └── README.md
 ```
 
-
 ## File Purpose
 
-| File | Purpose |
-|---|---|
-| load_documents.py | Loads the PDF documents and extracts the text page by page |
-| chunk_documents.py | Splits the extracted text into smaller overlapping chunks and keeps the related metadata |
-| index_chunks.py | Creates embeddings for the chunks and stores them in ChromaDB |
-| keyword_search.py | Searches the chunks using BM25 keyword search |
+| File               | Purpose                                                                                       |
+| ------------------ | --------------------------------------------------------------------------------------------- |
+| load_documents.py  | Loads the PDF documents and extracts the text page by page                                    |
+| chunk_documents.py | Splits the extracted text into smaller overlapping chunks and keeps the related metadata      |
+| index_chunks.py    | Creates embeddings for the chunks and stores them in ChromaDB                                 |
+| keyword_search.py  | Searches the chunks using BM25 keyword search                                                 |
 | semantic_search.py | Creates an embedding for the user query and searches ChromaDB for semantically similar chunks |
-| hybrid_search.py | Combines keyword and semantic search results using Reciprocal Rank Fusion (RRF) |
-| generate_answer.py | Uses the retrieved chunks to build a prompt and generate the final LLM answer |
-| evaluation.py | Evaluates the quality of retrieval and generated answers |
-| main.py | Connects and runs the individual steps of the RAG pipeline |
-| app.py | Provides the Streamlit user interface |
+| hybrid_search.py   | Combines keyword and semantic search results using Reciprocal Rank Fusion (RRF)               |
+| generate_answer.py | Uses the retrieved chunks to build a prompt and generate the final LLM answer                 |
+| evaluation.py      | Evaluates retrieval quality using a golden set of questions with Hit@K and MRR metrics        |
+| main.py            | Connects and runs the individual steps of the RAG pipeline                                    |
+| app.py             | Provides the Streamlit user interface                                                         |
