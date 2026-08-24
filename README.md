@@ -83,3 +83,14 @@ rag-from-scratch/
 | evaluation.py      | Evaluates retrieval quality using a golden set of questions with Hit@K and MRR metrics        |
 | main.py            | Connects and runs the individual steps of the RAG pipeline                                    |
 | app.py             | Provides the Streamlit user interface                                                         |
+
+## Project takeaways
+
+The main insights gained from building and evaluating the RAG pipeline from scratch are:
+
+* Retrieval quality is often the main limitation of a RAG system.
+* Semantic, keyword, and hybrid retrieval behave differently depending on the question.
+* Hybrid retrieval does not automatically outperform semantic or keyword retrieval.
+* Technical tables and exact identifiers can be difficult to retrieve reliably with standard text chunking.
+* The LLM you choose can make a big difference in answer quality, but larger models also need more computing power to run locally.
+* Evaluation is necessary to determine whether a retrieval change actually improves the system.
