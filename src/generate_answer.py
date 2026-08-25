@@ -29,10 +29,20 @@ def generate_answer(query, hybrid_result):
 
     # Create the prompt for the LLM
     prompt = f"""
+    
+/no_think
+
 Use only the following context to answer the question.
 
-If the answer cannot be found in the context, say that the information
-is not available in the provided documents.
+Give only the final answer.
+Answer directly and concisely.
+Do not explain your reasoning.
+Do not describe how you searched the context.
+Do not repeat the context.
+Do not include information that is not supported by the context.
+
+If the answer cannot be found in the context, say:
+"The information is not available in the provided documents."
 
 Context:
 {context}
@@ -42,6 +52,7 @@ Question:
 
 Answer:
 """
+
 
     # ---------------------------------------------------------
     # LLM call
@@ -54,7 +65,12 @@ Answer:
                 "role": "user",
                 "content": prompt
             }
-        ]
+        ],
+        # Disable Qwen3 thinking mode for faster answers
+        think=False,
+        # Keep the model loaded in memory for faster follow up questions. It consumes RAM
+        keep_alive="10m"
     )
     
     return response["message"]["content"]
+
