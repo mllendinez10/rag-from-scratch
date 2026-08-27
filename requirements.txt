@@ -4,3 +4,4 @@ sentence-transformers
 chromadb
 ollama
 streamlit
+docling

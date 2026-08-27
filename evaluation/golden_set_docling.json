@@ -1,0 +1,51 @@
+[
+  {
+    "question": "What is the item number for MT-70 OC?",
+    "expected_answer": "2268365",
+    "source": "ESR-5019.pdf",
+    "page": 7,
+    "relevant_chunk_ids": ["27"]
+  },
+  {
+    "question": "What are the materials and coatings for item number 2268517?",
+    "expected_answer": "S280GD+ / Z275-M-A-C / EN 10346",
+    "source": "ESR-5019.pdf",
+    "page": 6,
+    "relevant_chunk_ids": ["16"]
+  },
+  {
+    "question": "Which MT channel profiles use ASTM A653 HSLAS Grade 50 steel?",
+    "expected_answer": "MT-70 S US OC, MT-70 US OC, MT-90 S US OC, and MT-90 US OC",
+    "source": "ESR-5019.pdf",
+    "page": 7,
+    "relevant_chunk_ids": ["20", "22"]
+  },
+  {
+    "question": "What material and coating are used for item number 2271516?",
+    "expected_answer": "Q355B acc. to GB/T 1591, hot dip galvanized",
+    "source": "ETA-26:0367.pdf",
+    "page": 5,
+    "relevant_chunk_ids": ["177"]
+  },
+  {
+    "question": "What installation torque is required for MT-TL M10 OC?",
+    "expected_answer": "40 Nm",
+    "source": "ETA-26:0367.pdf",
+    "page": 14,
+    "relevant_chunk_ids": ["203"]
+  },
+  {
+    "question": "What is the minimum distance between the cut of a closed MT channel and the start of the dome-shaped hole?",
+    "expected_answer": "10 mm",
+    "source": "ETA-26:0367.pdf",
+    "page": 14,
+    "relevant_chunk_ids": ["204"]
+  },
+  {
+    "question": "What is the +Fx,Rk characteristic resistance of MT-C-GS OC with an MT-40D V2 installation channel?",
+    "expected_answer": "14.93 kN",
+    "source": "ETA-26:0367.pdf",
+    "page": 20,
+    "relevant_chunk_ids": ["259", "262", "263"]
+  }
+]
