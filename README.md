@@ -141,3 +141,15 @@ The main insights gained from building and evaluating the RAG pipeline from scra
 * The LLM you choose can make a big difference in answer quality, but larger models also need more computing power to run locally.
 * Evaluation is necessary to determine whether a retrieval change actually improves the system.
 * More sophisticated chunking does not automatically improve RAG retrieval. Changes should be evaluated with data before being adopted.
+
+## Getting Started
+
+1. Install dependencies: pip install -r requirements.txt
+2. Install and run Ollama, then download the Qwen3 4B model.
+3. If you change the documents:
+   - Add the new PDFs to the folder data/ and update the document paths.
+   - Run index_chunks.py to index the new chunks and store their embeddings in ChromaDB.
+   - Update the golden_set.json with questions and expected answers from the new documents.
+4. Run the pipeline: main.py
+5. Launch the UI: app.py
+6. Evaluate retrieval: evaluation.py
