@@ -144,12 +144,14 @@ The main insights gained from building and evaluating the RAG pipeline from scra
 
 ## Getting Started
 
+Run all commands from the project root with your virtual environment active.
 1. Install dependencies: pip install -r requirements.txt
-2. Install and run Ollama, then download the Qwen3 4B model.
-3. If you change the documents:
-   - Add the new PDFs to the folder data/ and update the document paths.
-   - Run index_chunks.py to index the new chunks and store their embeddings in ChromaDB.
-   - Update the golden_set.json with questions and expected answers from the new documents.
-4. Run the pipeline: main.py
-5. Launch the UI: app.py
-6. Evaluate retrieval: evaluation.py
+2. Install and run Ollama, then download the model: ollama pull qwen3:4b
+3. Index the document chunks and store their embeddings in ChromaDB: python src/index_chunks.py
+4. If you change the documents:
+   - Add the new PDFs to data/ and update the document paths.
+   - Run python src/index_chunks.py again.
+   - Update evaluation/golden_set.json with questions and expected answers from the new documents.
+5. Run the pipeline: python src/main.py
+6. Launch the UI: streamlit run src/app.py
+7. Evaluate retrieval: python src/evaluation.py
